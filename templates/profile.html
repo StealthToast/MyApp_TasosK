@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Classroom App: Profile</title>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                </ul>
+            </nav>
+        </div>
+ 
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="../overview">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="#">Profile</a></li>
+        </ul>
+    </div>
+        
+    <!-- Print Data -->
+    <div class="jumbotron">
+        <h2>Your Profile</h2>
+        <table class="profileView" align="center">
+            {% for x in userData %}
+                  <tr>
+                    <td style="text-align:right; width: 32%;"> <b>Username: </b></td>
+                    <td> {{ x.t_username }} </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:right;"> <b>First Name:</b> </td>
+                    <td> {{ x.t_fname}} </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:right;"> <b>Last Name:</b> </td>
+                    <td> {{ x.t_lname }} </td>
+                  </tr>
+                  <tr>
+                    <td style="text-align:right;"> <b>Role:</b> </td>
+                    <td> {{ x.t_role }} </td>
+                  </tr>
+            {% endfor %} 
+        </table>
+
+        <p class="lead">
+            If you wish to update your information, click the button below.
+        </p>
+        <a class="btn btn-lg btn-success" href="updateProfile" role="button">Update Profile</a>
+    </div>
+</body>
+</html>
+
+    

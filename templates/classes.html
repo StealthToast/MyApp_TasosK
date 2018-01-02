@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Classroom App: Classes</title>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                </ul>
+            </nav>
+        </div>
+ 
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="../overview">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="#">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+        
+    <div class="jumbotron">
+        <p class="lead">
+            <h2>Classes</h2>
+            In this page, you can view all created classes, as well as create new ones and modify or delete existing ones. <br>
+            You can assign students to classes through the <a href="../students">Students</a> page.
+        </p>
+        <a class="btn btn-lg btn-success" href="showAddClass" role="button">Create Class</a>
+        <a class="btn btn-lg btn-success" href="updateClass" role="button">Update Class</a>
+        <a class="btn btn-lg btn-success" href="deleteClass" role="button">Delete Class</a>
+        <!-- Print Classes  -->
+        <table class="listView" style="width:50%;">
+            <tr>
+                <th>ID Code</th>
+                <th>Name</th>
+                <th>Description</th>
+            </tr>
+            {% for t in table %}
+                <tr>
+                    <td>{{ t.c_id }}</td>    
+                    <td>{{ t.c_name }}</td>   
+                    <td>{{ t.c_description }}</td>   
+                </tr>
+            {% endfor %}
+         </table>
+    </div>
+</body>
+</html>
+
+    

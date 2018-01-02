@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classroom App: Delete Student</title>
+	<script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+    
+	<script>
+	$(function() {
+        $('#btnDeleteByID').click(function() {
+            $.ajax({
+                url: '/deleteStudentID',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+    
+    $(function() {
+        $('#btnDeleteByName').click(function() {
+            $.ajax({
+                url: '/deleteStudentName',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+	</script>
+</head>
+ 
+<body>
+<div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                    <a class="btn btn-lg btn-success" href="../students" role="button">Back</a>
+                </ul>
+            </nav>
+        </div>
+            
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="../overview">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+ 
+        <div class="jumbotron">
+            <p class="lead">
+                <h2>Delete Student</h2>
+                Enter a student's username or ID and they will be deleted. <br>
+                You can view all students' IDs <a href="../students">here</a>. <br> <br>
+            </p>
+            <table align="center">
+                <tr>
+                    <td>
+                    <form class="form-signin">
+                        <label for="inputID" class="sr-only">ID</label>
+                        <input type="name" name="inputID" id="inputID" class="form-control" placeholder="ID" style="margin-bottom: 10px" required autofocus>
+
+                        <button id="btnDeleteByID" class="btn btn-lg btn-primary btn-block" type="button">Delete by ID</button>
+                    </form>
+                    </td>
+                    <td>
+                        <form class="form-signin">
+                            <label for="inputUsername" class="sr-only">Username</label>
+                            <input type="name" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username" style="margin-bottom: 10px" required autofocus>
+
+                            <button id="btnDeleteByName" class="btn btn-lg btn-primary btn-block" type="button">Delete by Username</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+</body>
+</html>

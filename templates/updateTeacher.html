@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classroom App: Update Profile</title>
+	<script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+	<script>
+	$(function() {
+        $('#btnUpdate').click(function() {
+            $.ajax({
+                url: '/commitUpdateTeacher',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+	</script>
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                    <a class="btn btn-lg btn-success" href="../profile" role="button">Back</a>
+                </ul>
+            </nav>
+        </div>
+            
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+
+    <div class="jumbotron">
+        <p class="lead">
+            <h2>Update Profile</h2>
+            Enter new values in these fields to update your credentials.<br>
+            Fields that are left empty will remain unchanged.
+        </p>
+        <form class="form-signin">               
+            <label for="inputUsername" class="sr-only">Username</label>
+            <input type="name" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+            
+            <label for="inputPassword" class="sr-only">Password</label>
+            <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+            
+            <label for="inputFirstName" class="sr-only">First Name</label>
+            <input type="name" name="inputFirstName" id="inputFirstName" class="form-control" placeholder="First Name" required>
+            
+            <label for="inputLastName" class="sr-only">Last Name</label>
+            <input type="name" name="inputLastName" id="inputLastName" class="form-control" placeholder="Last Name" required>
+            
+            <label for="inputRole" class="sr-only">Role</label>
+            <input type="name" name="inputRole" id="inputRole" class="form-control" placeholder="Role" style="margin-bottom: 10px" required>
+             
+            <button id="btnUpdate" class="btn btn-lg btn-primary btn-block" type="button">Update Information</button>
+        </form>
+    </div>
+</body>
+</html>

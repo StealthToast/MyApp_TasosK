@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Classroom App: Homepage</title>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+</head>
+ 
+<body>
+    <div class="container">
+        <!-- Navbar -->
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="#" role="button">Home</a>
+                    <!-- If logged in, show the log out button. Else, show the log in / register buttons -->
+                    {% if not session['logged_in'] %}
+                        <a class="btn btn-lg btn-success" href="../showLogIn" role="button">Log In</a>
+                        <a class="btn btn-lg btn-success" href="../showSignUp" role="button">Register</a>
+                    {% endif %}
+                    {% if session['logged_in'] %}
+                        <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+ 
+        <!-- Logged In View-->
+        {% if session['logged_in'] %}
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="active"><a href="overview">Overview</a></li>
+                <li role="presentation" class="active"><a href="students">Students</a></li>
+                <li role="presentation" class="active"><a href="classes">Classes</a></li>
+                <li role="presentation" class="active"><a href="assignments">Assignments</a></li>
+                <li role="presentation" class="active"><a href="teachers">Teachers</a></li>
+                <li role="presentation" class="active"><a href="profile">Profile</a></li>
+            </ul>
+        {% endif %}
+        
+        <!-- Display greeting -->       
+        <div class="jumbotron">
+                <h1>Classroom Application</h1>
+                {% if session['logged_in'] %}
+                    <h2> Welcome, <b>{{ currentUser }}</b>, to the Classroom Application! </h2>
+                    <p class="lead">
+                        While you are logged in, you can add, modify and delete students, classes and assignments. <br>
+                        Click on one of the buttons on the toolbar above for more information! <br>
+                        Alternatively, if you wish to sign out, click the log out button.
+                    </p>
+                    
+                {% else %}
+                    <h2>Welcome to the Classroom Application!</h2>
+                    <p class="lead">
+                        Teachers can create accounts, so that they may add students, classes and assignments.<br>
+                        Teachers can also modify or delete existing students, classes and assignments, as well as assign and unassign students from classes.
+                        <br><br>
+                        If you already have an account, please log in before proceeding! Otherwise, sign up and get started!<br>
+                    </p>
+                    <a class="btn btn-lg btn-success" href="../showLogIn" role="button">Log In</a>
+                    <a class="btn btn-lg btn-success" href="../showSignUp" role="button">Register</a> 
+                {% endif %}
+        </div>
+    </div>
+</body>
+</html>

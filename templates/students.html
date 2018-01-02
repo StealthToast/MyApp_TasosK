@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Classroom App: Students</title>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                </ul>
+            </nav>
+        </div>
+ 
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="../overview">Overview</a></li>
+            <li role="presentation" class="active"><a href="#">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+    
+    <div class="jumbotron">
+        <p class="lead">
+            <h2>Students</h2>
+            In this page, you can view all created students, as well as create new ones and modify or delete existing ones. <br>
+            Keep in mind, that a student will not be added nor removed from an class if you assign a Class ID that doesn not exist.
+        </p>
+        <a class="btn btn-lg btn-success" href="showAddStudent" role="button">Create Student</a>
+        <a class="btn btn-lg btn-success" href="updateStudent" role="button">Update Student</a>
+        <a class="btn btn-lg btn-success" href="deleteStudent" role="button">Delete Student</a> <br> <br>
+        <a class="btn btn-lg btn-success" href="enrollStudent" role="button">Add Student to Class</a>
+        <a class="btn btn-lg btn-success" href="unenrollStudent" role="button">Remove Student from Class</a>
+        <!-- Print Students -->
+        <table class="listView">
+            <tr>
+                <th>ID Code</th>
+                <th>Username</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Role</th>
+                <th>Birthdate</th>
+            </tr>
+            {% for t in table %}
+                <tr>
+                    <td>{{ t.s_id }}</td>    
+                    <td>{{ t.s_username }}</td>   
+                    <td>{{ t.s_fname }}</td>   
+                    <td>{{ t.s_lname }}</td>   
+                    <td>{{ t.s_role }}</td>   
+                    <td>{{ t.s_birthdate }}</td>   
+                </tr>
+            {% endfor %}
+         </table>
+    </div>
+</body>
+</html>
+
+    

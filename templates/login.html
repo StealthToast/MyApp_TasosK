@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classroom App: Log In</title>
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    {% if not session['logged_in'] %}
+                        <a class="btn btn-lg btn-success" href="#" role="button">Log In</a>
+                        <a class="btn btn-lg btn-success" href="showSignUp" role="button">Register</a>
+                    {% endif %}
+                    {% if session['logged_in'] %}
+                        <a class="btn btn-lg btn-success" href="logout" role="button">Log Out</a>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    
+        <!-- If logged in, notify the user that they are already logged in -->
+        <div class="jumbotron">
+            {% if session['logged_in'] %}
+                <p class="lead">You're logged in already!</p>
+            {% else %}
+                <!--    If this is the first attempt, display basic info.
+                        Else, display "wrong credentials" error.            -->
+                <p class="lead">
+                    {% if error == '' %}
+                        Enter your username and password before you can proceed.
+                    {% else %}
+                        {{ error }}
+                    {% endif %}
+                </p>
+                <form action="/login" method="POST" class="form-signin">
+                    <label for="username" class="sr-only">Username</label>
+                    <input type="username" name="username" id="username" class="form-control" placeholder="Username" required autofocus>
+                    
+                    <label for="password" class="sr-only">Password</label>
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" style="margin-bottom: 10px" required>
+                    <input class="btn btn-lg btn-primary btn-block" type="submit" value="Log in">
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

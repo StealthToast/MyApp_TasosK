@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Classroom App: Overview</title>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                </ul>
+            </nav>
+        </div>
+ 
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="#">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+        
+    <!-- Print Data -->
+    <div class="jumbotron">
+        <p class="lead">
+            <h2>Overview</h2>
+            Here you can view all classes, along with students enrolled to them and assignments associated with them.
+        </p>
+        {% for c in classes %}
+            <div class="classInfo">
+                <h2> {{ c.c_name }} <p style="font-size: 14px;"> Class ID: #{{ c.c_id }}</p> </h2>
+                <div class="classDescription"> {{ c.c_description }} </div>
+                <div class="classSeparator"> Students </div>
+                <table class="listView" style="width:30%;">
+                    <tr>
+                        <th>ID</th>
+                        <th>Full Name (Username)</th>
+                    </tr>
+                    {% for e in enrollments %}
+                        {% if e.e_class == c.c_id %}
+                            <tr>
+                                 {% for s in students %}
+                                    {% if s.s_id == e.e_student %}   
+                                        <td>{{ s.s_id }}</td>   
+                                        <td>{{ s.s_fname }}  {{ s.s_lname }}  ( {{ s.s_username }} )</td>    
+                                    {% endif %}
+                                {% endfor %}
+                            </tr>
+                        {% endif %}
+                    {% endfor %}
+                    <table class="listView" style="width:60%;">
+                        <div class="classSeparator"> Assignments </div>
+                        <tr>
+                            <th>ID</th>
+                            <th>Title</th>
+                            <th>Deadline</th>
+                            <th>Description</th>
+                        </tr>
+                        {% for a in assignments %}
+                            {% if a.a_classid == c.c_id %}
+                                <tr>
+                                    <td>{{ a.a_id }}</td>    
+                                    <td>{{ a.a_title }}</td>   
+                                    <td>{{ a.a_deadline }}</td>    
+                                    <td>{{ a.a_description }}</td>  
+                                </tr>
+                            {% endif %}
+                        {% endfor %}    
+                    </table>
+                </table>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+    

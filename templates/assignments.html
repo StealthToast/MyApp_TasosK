@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<head>
+    <title>Classroom App: Assignments</title>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                </ul>
+            </nav>
+        </div>
+ 
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="../overview">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="#">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+    
+    
+    <div class="jumbotron">
+        <p class="lead">
+            <h2>Assignments</h2>
+            In this page, you can view all created assignments, as well as create new ones and modify or delete existing ones. <br>
+            Keep in mind, that an assignment will not be created nor updated if you assign a Class ID that does not exist.
+        </p>
+        <a class="btn btn-lg btn-success" href="showAddAssignment" role="button">Create Assignment</a>
+        <a class="btn btn-lg btn-success" href="updateAssignment" role="button">Update Assignment</a>
+        <a class="btn btn-lg btn-success" href="deleteAssignment" role="button">Delete Assignment</a>
+        <!-- Print Assignments  -->
+        <table class="listView" style="width:70%;">
+            <tr>
+                <th>ID Code</th>
+                <th>Title</th>
+                <th>Deadline</th>
+                <th>Description</th>
+                <th>Class ID</th>
+            </tr>
+            {% for t in table %}
+                <tr>
+                    <td>{{ t.a_id }}</td>    
+                    <td>{{ t.a_title }}</td>   
+                    <td>{{ t.a_deadline }}</td>   
+                    <td>{{ t.a_description }}</td>   
+                    <td>{{ t.a_classid }}</td>
+                </tr>
+            {% endfor %}
+         </table> 
+    </div>
+</body>
+</html>
+
+    

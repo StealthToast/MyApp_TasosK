@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classroom App: Register</title>
+    <script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+    
+    <script>
+    $(function() {
+        $('#btnSignUp').click(function() {
+            $.ajax({
+                url: '/signUp',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+    </script>
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../showLogIn" role="button">Log In</a>
+                    <a class="btn btn-lg btn-success" href="#" role="button">Register</a>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="jumbotron">
+            <p class="lead">
+                <h2>Registration Form</h2>
+                Enter your credentials here to register your account as a teacher.<br>
+                Keep in mind, you must have a unique username!
+            </p>
+            <form class="form-signin">
+                <label for="inputUsername" class="sr-only">Username</label>
+                <input type="name" name="inputUsername" id="inputUsername" class="form-control" placeholder="Username" required autofocus>
+                
+                <label for="inputPassword" class="sr-only">Password</label>
+                <input type="password" name="inputPassword" id="inputPassword" class="form-control" placeholder="Password" required>
+                
+                <label for="inputFirstName" class="sr-only">First Name</label>
+                <input type="name" name="inputFirstName" id="inputFirstName" class="form-control" placeholder="First Name" required>
+                
+                <label for="inputLastName" class="sr-only">Last Name</label>
+                <input type="name" name="inputLastName" id="inputLastName" class="form-control" placeholder="Last Name" required>
+                
+                <label for="inputRole" class="sr-only">Role</label>
+                <input type="name" name="inputRole" id="inputRole" class="form-control" placeholder="Role" style="margin-bottom: 10px" required>
+                 
+                <button id="btnSignUp" class="btn btn-lg btn-primary btn-block" type="button">Register</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

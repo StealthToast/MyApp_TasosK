@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classroom App: Create Class</title>
+	<script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+    
+	<script>
+	$(function() {
+        $('#btnAddClass').click(function() {
+            $.ajax({
+                url: '/addClass',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+	</script>
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                    <a class="btn btn-lg btn-success" href="../classes" role="button">Back</a>
+                </ul>
+            </nav>
+        </div>
+            
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="../overview">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+ 
+        <div class="jumbotron">
+            <p class="lead">
+                <h2>Create Class</h2>
+                Enter a class' information into the fields and it will be created. <br>
+                No field must be left blank.
+            </p>
+            <form class="form-signin">
+                <label for="inputName" class="sr-only">Name</label>
+                <input type="name" name="inputName" id="inputName" class="form-control" placeholder="Name" required autofocus>
+                
+                <label for="inputDescription" class="sr-only">Description</label>
+                <input type="name" name="inputDescription" id="inputDescription" class="form-control" placeholder="Description" style="margin-bottom: 10px" required>
+                 
+                <button id="btnAddClass" class="btn btn-lg btn-primary btn-block" type="button">Create Class</button>
+            </form>
+        </div>
+</body>
+</html>

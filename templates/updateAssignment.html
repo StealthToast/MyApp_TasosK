@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Classroom App: Update Assignment</title>
+	<script src="../static/js/jquery-3.2.1.min.js"></script>
+    <link href="../static/style/bootstrap.min.css" rel="stylesheet">
+    <link href="../static/style/style.css" rel="stylesheet">
+	<script>
+	$(function() {
+        $('#btnUpdate').click(function() {
+            $.ajax({
+                url: '/commitUpdateAssignment',
+                data: $('form').serialize(),
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+        });
+    });
+	</script>
+</head>
+ 
+<body>
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <a class="btn btn-lg btn-success" href="/" role="button">Home</a>
+                    <a class="btn btn-lg btn-success" href="../logout" role="button">Log Out</a>
+                    <a class="btn btn-lg btn-success" href="../assignments" role="button">Back</a>
+                </ul>
+            </nav>
+        </div>
+            
+        <!-- Toolbar -->
+        <ul class="nav nav-pills pull-right">
+            <li role="presentation" class="active"><a href="../overview">Overview</a></li>
+            <li role="presentation" class="active"><a href="../students">Students</a></li>
+            <li role="presentation" class="active"><a href="../classes">Classes</a></li>
+            <li role="presentation" class="active"><a href="../assignments">Assignments</a></li>
+            <li role="presentation" class="active"><a href="../teachers">Teachers</a></li>
+            <li role="presentation" class="active"><a href="../profile">Profile</a></li>
+        </ul>
+    </div>
+ 
+        <div class="jumbotron">
+            <p class="lead">
+                <h2>Update Assignment</h2>
+                Enter new values in these fields to update an assignment's information.<br>
+                You <b>must</b> enter the assignment's ID in order to update it. You can view all assignments' IDs <a href="../assignments">here</a>. <br> <br>
+                Fields that are left empty will remain unchanged. <br>
+                If you enter a class ID that does not exist, that field will not be updated.
+            </p>
+            <form class="form-signin">
+                <label for="inputID" class="sr-only">Insert Assignment's ID Here</label>
+                <input type="name" name="inputID" id="inputID" class="form-control" placeholder="Insert ID here" required autofocus>
+                
+                <label for="inputTitle" class="sr-only">Title</label>
+                <input type="name" name="inputTitle" id="inputTitle" class="form-control" placeholder="Title" required>
+                
+                <label for="inputDeadline" class="sr-only">Deadline</label>
+                <input type="name" name="inputDeadline" id="inputDeadline" class="form-control" placeholder="Deadline" required>
+                
+                <label for="inputDescription" class="sr-only">Description</label>
+                <input type="name" name="inputDescription" id="inputDescription" class="form-control" placeholder="Description" required>
+                
+                <label for="inputCID" class="sr-only">Class ID</label>
+                <input type="name" name="inputCID" id="inputCID" class="form-control" placeholder="Class ID" style="margin-bottom: 10px" required>
+                
+                <button id="btnUpdate" class="btn btn-lg btn-primary btn-block" type="button">Update Assignment</button>
+            </form>
+        </div>
+
+</body>
+</html>
